@@ -58,50 +58,50 @@ This project description emphasizes your role in leveraging AWS EC2, Kubernetes,
 # Use this commands to setup our project :-
 ## Create ec2 instance with t2.medium or t3.medium and install docker
 $ sudo apt install docker.io
-$ sudo usermod -aG docker $USER && newgrp docker
+#### $ sudo usermod -aG docker $USER && newgrp docker
 
 ## Install kind (Kubernetes in Docker) & write the script
-$ mkdir k8s-install 
-$ vim install_kind.sh
-$ chmod +x install_kind.sh
-$ ./install_kind.sh
+#### $ mkdir k8s-install 
+#### $ vim install_kind.sh
+#### $ chmod +x install_kind.sh
+#### $ ./install_kind.sh
 
-## Create the cluster
+## Create a cluster
 $ vim config.yaml
-$ kind create cluster --config=config.yaml --name=my-cluster	
+#### $ kind create cluster --config=config.yaml --name=my-cluster	
 
 ## Install kubectl
-$ vim install_kubectl.sh
-$ chmod +x install_kubectl.sh
-$ ./install_kubectl.sh
-# check the node is created or not 
-$ kubectl get node
+#### $ vim install_kubectl.sh
+#### $ chmod +x install_kubectl.sh
+#### $ ./install_kubectl.sh
+#### # check the node is created or not 
+#### $ kubectl get node
 
 
 ## Install argocd 
-$ kubectl create namespace argocd
-$ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-$ kubectl get pod -n argocd
-$ kubectl get svc -n argocd
+#### $ kubectl create namespace argocd
+#### $ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+#### $ kubectl get pod -n argocd
+#### $ kubectl get svc -n argocd
 # change the service type clusterIp to NodePort
-$ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
-$ kubectl port-forward -n argocd service/argocd-server 8443:443 --address=0.0.0.0 &
+#### $ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
+#### $ kubectl port-forward -n argocd service/argocd-server 8443:443 --address=0.0.0.0 &
 ## argocd access 
 argocd username:- admin
 argocd password command:-
 $ kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 
-$ kubectl get pod
-$ kubectl get deployment
-$ kubectl get svc 
-$ kubectl port-forward svc/vote 5000:5000 --address=0.0.0.0 &
-$ kubectl port-forward svc/result 5001:5001 --address=0.0.0.0 &
+#### $ kubectl get pod
+#### $ kubectl get deployment
+#### $ kubectl get svc 
+#### $ kubectl port-forward svc/vote 5000:5000 --address=0.0.0.0 &
+#### $ kubectl port-forward svc/result 5001:5001 --address=0.0.0.0 &
 
-# Install Kubernetes dashboard
-- Deploy Kubernetes dashboard:
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-$ vim dashboard.yaml
-$ kubectl apply -f dashboard.yaml
+## Install Kubernetes dashboard
+### Deploy Kubernetes dashboard:
+#### $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+#### $ vim dashboard.yaml
+#### $ kubectl apply -f dashboard.yaml
 
 # Port forwarding of kubernetes-dashboard
 $ kubectl port-forward svc/kubernetes-dashboard -n kubernetes-dashboard 8080:443 --address=0.0.0.0 &
@@ -110,7 +110,7 @@ $ kubectl port-forward svc/kubernetes-dashboard -n kubernetes-dashboard 8080:443
 $ kubectl -n kubernetes-dashboard create token admin-user
 
 ## access the website:- result and vote
-###IP address:- ip:5000, ip:5001
+IP address:- ip:5000, ip:5001
 
 
 
