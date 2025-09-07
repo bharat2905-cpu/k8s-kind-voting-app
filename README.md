@@ -88,7 +88,7 @@ $ vim config.yaml
 #### $ kubectl port-forward -n argocd service/argocd-server 8443:443 --address=0.0.0.0 &
 ## argocd access 
 argocd username:- admin
-argocd password command:-
+#### argocd password command:-
 $ kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 
 #### $ kubectl get pod
